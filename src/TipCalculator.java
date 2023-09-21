@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class TipCalculator {
     public static String format(double price) {
         return String.format("%.2f", price);
@@ -15,13 +18,14 @@ public class TipCalculator {
         int tipPercent = scan.nextInt();
         scan.nextLine();
 
-        double total = 0;
-        double cost = 0;
+        System.out.print("List an item cost in dollars and cents (-1 to stop): $");
+        double lastCost = scan.nextDouble();
+        ArrayList<double> costs = new ArrayList<double>();
 
-        while (cost != -1) {
-            total += cost;
+        while (lastCost != -1) {
+
             System.out.print("List an item cost in dollars and cents (-1 to stop): $");
-            cost = scan.nextDouble();
+            lastCost = scan.nextDouble();
             scan.nextLine();
         }
 
