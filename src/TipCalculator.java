@@ -30,6 +30,14 @@ public class TipCalculator {
         double tipPerPerson = (tip / people);
         double costAndTipPerPerson = costPerPerson + tipPerPerson;
 
+        System.out.println("Total bill before tip: " + total);
+        System.out.println("Total percentage: " + tipPercent);
+        System.out.println("Total tip: " + tip);
+        System.out.println("Total bill with tip: " + totalAndTip);
+        System.out.println("Per person cost before tip: " + tipPerPerson);
+        System.out.println("Per person total cost: " + costAndTipPerPerson);
+
+
 
     }
 }
