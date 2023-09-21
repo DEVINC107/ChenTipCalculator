@@ -30,5 +30,6 @@ public class TipCalculator {
         double tipPerPerson = (tip / people);
         double costAndTipPerPerson = costPerPerson + tipPerPerson;
 
+
     }
 }
