@@ -20,7 +20,7 @@ public class TipCalculator {
 
         while (cost != -1) {
             total += cost;
-            System.out.print("List an item cost in dollars and cents: $");
+            System.out.print("List an item cost in dollars and cents (-1 to stop): $");
             cost = scan.nextDouble();
             scan.nextLine();
         }
