@@ -12,11 +12,23 @@ public class TipCalculator {
         int tipPercent = scan.nextInt();
         scan.nextLine();
 
-        double cost;
+        double total = 0;
+        double cost = 0;
 
         while (cost != -1) {
             System.out.print("List an item cost in dollars and cents: $");
-
+            cost = scan.nextDouble();
+            total += cost;
+            scan.nextLine();
         }
+
+        System.out.println("Calculating result... ...");
+
+        double tip = total * tipPercent / 100;
+        double totalAndTip = total + tip;
+        double costPerPerson = total / people;
+        double tipPerPerson = (tip / people);
+        double costAndTipPerPerson = costPerPerson + tipPerPerson;
+
     }
 }
