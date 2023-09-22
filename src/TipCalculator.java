@@ -1,12 +1,14 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 public class TipCalculator {
     public static String format(double price) {
         return String.format("%.2f", price);
     }
     public static void main(String[] args) {
+        final double tipAverage = 20;
         Scanner scan = new Scanner(System.in);
         System.out.print("Hello, enter your name: ");
         String name = scan.nextLine();
@@ -19,17 +21,35 @@ public class TipCalculator {
         scan.nextLine();
 
         System.out.print("List an item cost in dollars and cents (-1 to stop): $");
-        double lastCost = scan.nextDouble();
-        ArrayList<double> costs = new ArrayList<double>();
+        double cost = scan.nextDouble();
+        scan.nextLine();
+        System.out.print("What is this item called? ");
+        String itemName = scan.nextLine();
+        Dictionary<String, Double> items = new Hashtable<>();
+        items.put(itemName, cost);
 
-        while (lastCost != -1) {
-
+        while (cost != -1) {
             System.out.print("List an item cost in dollars and cents (-1 to stop): $");
-            lastCost = scan.nextDouble();
-            scan.nextLine();
+            cost = scan.nextDouble();
+            if (cost != -1) {
+                scan.nextLine();
+                System.out.print("What is this item called? ");
+                itemName = scan.nextLine();
+                items.put(itemName, cost);
+            }
         }
 
         System.out.println("Calculating result... ...");
+
+        double total = 0;
+
+        Enumeration<String> k = items.keys();
+        while (k.hasMoreElements()) {
+            String key = k.nextElement();
+            double value = items.get(key);
+
+            total += value;
+        }
 
         double tip = total * tipPercent / 100;
         double totalAndTip = total + tip;
@@ -37,15 +57,23 @@ public class TipCalculator {
         double tipPerPerson = (tip / people);
         double costAndTipPerPerson = costPerPerson + tipPerPerson;
 
-        System.out.println("Total bill before tip: " + format(total));
-        System.out.println("Total percentage: " + format(tipPercent));
-        System.out.println("Total tip: " + format(tip));
-        System.out.println("Total bill with tip: " + format(totalAndTip));
-        System.out.println("Per person cost before tip: " + format(costPerPerson));
-        System.out.println("Tip per person: " + format(tipPerPerson));
-        System.out.println("Per person total cost: " + format(costAndTipPerPerson));
+        System.out.println("Total bill before tip: $" + format(total));
+        System.out.println("Total percentage: %" + tipPercent);
+        System.out.println("Total tip: $" + format(tip));
+        System.out.println("Total bill with tip: $" + format(totalAndTip));
+        System.out.println("Per person cost before tip: $" + format(costPerPerson));
+        System.out.println("Tip per person: $" + format(tipPerPerson));
+        System.out.println("Per person total cost: $" + format(costAndTipPerPerson));
 
+        System.out.println("Items ordered:");
 
+        k = items.keys();
+        while (k.hasMoreElements()) {
+            System.out.println(k.nextElement());
+        }
 
+        if (tipPercent >= tipAverage) {
+
+        }
     }
 }
