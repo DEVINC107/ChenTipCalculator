@@ -80,7 +80,7 @@ public class TipCalculator {
         // congratulates you if you tipped more than average
         if (tipPercent > tipAverage) {
             System.out.println("You tipped " + ((double) tipPercent/tipAverage) + "x more than the average.");
-            System.out.println("The extra tipped amounts to $" + format(tip - total * (tipAverage/100)));
+            System.out.println("In dollars that is $" + format(tip - total * (tipAverage/100)));
             System.out.println("How generous!");
         }
     }
