@@ -4,10 +4,12 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 public class TipCalculator {
+    // takes a number and returns that number formatted into a price.
     public static String format(double price) {
         return String.format("%.2f", price);
     }
     public static void main(String[] args) {
+        // this is used for calculating how much above average the user's tip is.
         final double tipAverage = 20;
         Scanner scan = new Scanner(System.in);
         System.out.print("Hello, enter your name: ");
@@ -20,12 +22,13 @@ public class TipCalculator {
         int tipPercent = scan.nextInt();
         scan.nextLine();
 
+        // captures items for calculation
         System.out.print("List an item cost in dollars and cents (-1 to stop): $");
         double cost = scan.nextDouble();
         scan.nextLine();
         System.out.print("What is this item called? ");
         String itemName = scan.nextLine();
-        Dictionary<String, Double> items = new Hashtable<>();
+        Dictionary<String, Double> items = new Hashtable<>(); // I make it a dictionary to store item names AND prices
         items.put(itemName, cost);
 
         while (cost != -1) {
@@ -51,12 +54,14 @@ public class TipCalculator {
             total += value;
         }
 
+        // calculates results
         double tip = total * tipPercent / 100;
         double totalAndTip = total + tip;
         double costPerPerson = total / people;
         double tipPerPerson = (tip / people);
         double costAndTipPerPerson = costPerPerson + tipPerPerson;
 
+        // outputs results
         System.out.println("Total bill before tip: $" + format(total));
         System.out.println("Total percentage: %" + tipPercent);
         System.out.println("Total tip: $" + format(tip));
@@ -66,12 +71,13 @@ public class TipCalculator {
         System.out.println("Per person total cost: $" + format(costAndTipPerPerson));
 
         System.out.println("Items ordered:");
-
+        // lists each item ordered
         k = items.keys();
         while (k.hasMoreElements()) {
             System.out.println(k.nextElement());
         }
 
+        // congratulates you if you tipped more than average
         if (tipPercent > tipAverage) {
             System.out.println("You tipped " + ((double) tipPercent/tipAverage) + "x more than the average.");
             System.out.println("The extra tipped amounts to $" + format(tip - total * (tipAverage/100)));
